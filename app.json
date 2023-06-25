@@ -10,7 +10,8 @@
     "orientation": "portrait",
     "userInterfaceStyle": "light",
     "splash": {
-      "backgroundColor": "#673AB8"
+      "backgroundColor": "#673AB8",
+      "color":"#fff"
     }
   }
 }
