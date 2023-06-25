@@ -49,6 +49,20 @@ const PersonalDetails = () => {
             placeholder="Email"
             label="Email"
           />
+          <ControlledInput
+            control={control}
+            name="password"
+            placeholder="Password"
+            label="Password"
+            secureTextEntry
+          />
+          <ControlledInput
+            control={control}
+            name="password_confirmation"
+            placeholder="Confirm Password"
+            label="Confirm Password"
+            secureTextEntry
+          />
         </Card.Content>
       </Card>
 
