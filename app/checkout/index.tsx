@@ -1,22 +1,46 @@
-import { StyleSheet, Text, View } from "react-native";
+import { ScrollView, StyleSheet } from "react-native";
 import { Link, useRouter } from "expo-router";
 import React from "react";
-import { Button } from "react-native-paper";
+import { Button, Card, TextInput, useTheme } from "react-native-paper";
 
 const PersonalDetails = () => {
   const router = useRouter();
+  const theme = useTheme();
   const nextPage = () => {
     router.push("/checkout/delivery");
     console.warn("next");
   };
   return (
-    <View>
-      <Text style={{ fontSize: 30 }}>PersonalDetails</Text>
+    <ScrollView
+      contentContainerStyle={{ gap: 15 }}
+      showsVerticalScrollIndicator={false}
+    >
+      <Card style={{ backgroundColor: theme.colors.background }}>
+        <Card.Title title="Personal Information" titleVariant="titleLarge" />
+        <Card.Content style={{ gap: 10 }}>
+          <TextInput
+            placeholder="Name"
+            label="Name"
+            autoFocus
+            style={{ backgroundColor: theme.colors.background }}
+          />
+          <TextInput
+            placeholder="example@email.com"
+            label="Email"
+            style={{ backgroundColor: theme.colors.background }}
+          />
+        </Card.Content>
+      </Card>
 
-      <Button onPress={nextPage} mode="contained">
+      <Button
+        onPress={nextPage}
+        mode="contained"
+        uppercase
+        contentStyle={{ paddingVertical: 10 }}
+      >
         Next
       </Button>
-    </View>
+    </ScrollView>
   );
 };
 

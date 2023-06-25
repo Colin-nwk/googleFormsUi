@@ -15,7 +15,7 @@ export default function Page() {
         </View>
         <TouchableOpacity style={styles.button}>
           <Link href={"/checkout"} style={styles.buttonText}>
-            Checkout
+            Get Started
           </Link>
         </TouchableOpacity>
       </View>

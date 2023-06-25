@@ -3,7 +3,7 @@ import { PaperProvider, MD3LightTheme } from "react-native-paper";
 
 const theme = {
   ...MD3LightTheme,
-  roundness: 1,
+  roundness: 2,
   colors: {
     ...MD3LightTheme.colors,
     primary: "#673AB8",
