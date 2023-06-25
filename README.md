@@ -1,14 +1,28 @@
-# Expo Router Example
-
-Use [`expo-router`](https://expo.github.io/router) to build native navigation using files in the `app/` directory.
-
-## 🚀 How to use
+# Google Form UI
+## 📝 RUN
 
 ```sh
-npx create-expo-app -e with-router
+npm install
+npx expo start
 ```
 
-## 📝 Notes
+## 📝 Screenshots
 
-- [Expo Router: Docs](https://expo.github.io/router)
-- [Expo Router: Repo](https://github.com/expo/router)
+<img src="./display/Screenshot%20(5).png">
+<img src="./display/Screenshot%20(4).png">
+<img src="./display/Screenshot%20(3).png">
+<img src="./display/Screenshot%20(2).png">
+<img src="./display/Screenshot%20(1).png">
+
+## 📝 STACK
+
+- React Native
+- Expo
+- React Hook Form
+- Zod
+- React Native Paper
+
+## TODO
+
+- Integrate appwrite backend
+- Store data in backend

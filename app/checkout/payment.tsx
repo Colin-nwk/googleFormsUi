@@ -38,17 +38,12 @@ const PaymentDetails = () => {
     } else {
       Alert.alert("Failed to submit the form");
     }
-    // router.push("/");
-    // onSubmitAll(data);
   };
 
   return (
     <ScrollView
       contentContainerStyle={{
         gap: 15,
-        // maxWidth: 800,
-        // width: "100%",
-        // alignItems: "center",
       }}
       showsVerticalScrollIndicator={false}
     >
@@ -94,10 +89,6 @@ const PaymentDetails = () => {
             secureTextEntry
           />
 
-          {/* <View>
-            <Switch />
-            <Text>Save payment information</Text>
-          </View> */}
           <Controller
             name="saveInfo"
             control={control}
@@ -106,7 +97,6 @@ const PaymentDetails = () => {
                 onPress={() => onChange(!value)}
                 label="Save payment Information"
                 status={value ? "checked" : "unchecked"}
-                // position="leading"
               />
             )}
           />

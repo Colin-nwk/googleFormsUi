@@ -15,7 +15,6 @@ export default function CheckoutStack() {
             headerStyle: { backgroundColor: "#673AB8" },
             headerTitleStyle: { color: "#f0ebf8" },
             headerTintColor: "#f0ebf8",
-            // headerBlurEffect: "systemUltraThinMaterial",
           }}
         >
           <Stack.Screen

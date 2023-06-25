@@ -3,11 +3,6 @@ import React from "react";
 
 import { HelperText, TextInput, useTheme } from "react-native-paper";
 import { useForm, Controller, Control } from "react-hook-form";
-// import { zodResolver } from "@hookform/resolvers/zod";
-// import {
-//   PersonalInfoSchema,
-//   PersonalInfo,
-// } from "../../src/schema/checkout.schema";
 
 type ControlledInputProps = {
   control: Control;
@@ -20,13 +15,7 @@ const ControlledInput = ({
   ...textInputProps
 }: ControlledInputProps) => {
   const theme = useTheme();
-  //   const {
-  //     handleSubmit,
 
-  //     formState: { errors },
-  //   } = useForm<PersonalInfo>({
-  //     resolver: zodResolver(PersonalInfoSchema),
-  //   });
   return (
     <Controller
       control={control}
