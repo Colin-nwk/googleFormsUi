@@ -6,6 +6,7 @@ export default function CheckoutStack() {
     <>
       <StatusBar style="light" />
       <Stack
+        initialRouteName="personal"
         screenOptions={{
           contentStyle: { padding: 15, backgroundColor: "#f0ebf8", flex: 1 },
           headerStyle: { backgroundColor: "#673AB8" },
@@ -15,7 +16,7 @@ export default function CheckoutStack() {
         }}
       >
         <Stack.Screen
-          name="index"
+          name="personal"
           options={{ title: "Personal Information" }}
         />
         <Stack.Screen
