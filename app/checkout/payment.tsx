@@ -1,7 +1,7 @@
 import { ScrollView, StyleSheet, View } from "react-native";
 
-import React, { useState } from "react";
-import { Link, useRouter } from "expo-router";
+import React from "react";
+import { useRouter } from "expo-router";
 import {
   Button,
   Card,
@@ -12,11 +12,24 @@ import {
   Checkbox,
 } from "react-native-paper";
 
+import ControlledInput from "../../src/components/ControlledInput";
+
+import { useForm, Controller } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import {
+  PaymentInfoSchema,
+  PaymentInfo,
+} from "../../src/schema/checkout.schema";
+zodResolver;
+
 const PaymentDetails = () => {
-  const [shipping, setShipping] = useState<string>("free");
+  const { control, handleSubmit } = useForm<PaymentInfo>({
+    resolver: zodResolver(PaymentInfoSchema),
+  });
+
   const theme = useTheme();
   const router = useRouter();
-  const handleSubmit = () => {
+  const handleSave = () => {
     //TODO: why wont it redirect to the home page
     router.push("/");
     console.warn("submit");
@@ -35,49 +48,62 @@ const PaymentDetails = () => {
       <Card style={{ backgroundColor: theme.colors.background }}>
         <Card.Title title={"Payment Details"} titleVariant="titleLarge" />
         <Card.Content style={{ gap: 10 }}>
-          <TextInput
+          <ControlledInput
+            name="number"
+            control={control}
             label={"Card number"}
-            placeholder="ex 0000 0000 0000 0000"
-            style={{ backgroundColor: theme.colors.background }}
+            placeholder="0000 0000 0000 0000"
           />
-          <TextInput
+          <ControlledInput
+            name="card_name"
+            control={control}
             label={"Card Name"}
-            placeholder="ex Name Name"
-            style={{ backgroundColor: theme.colors.background }}
+            placeholder="Name Name"
           />
           <View style={{ flexDirection: "row", gap: 20 }}>
-            <TextInput
+            <ControlledInput
+              name="expirationDate"
+              control={control}
               label={"Expiration Date"}
               placeholder=" mm/yy"
               style={{ backgroundColor: theme.colors.background, flex: 3 }}
             />
-            <TextInput
+            <ControlledInput
+              name="security_code"
+              control={control}
               label={"Security Code"}
               placeholder="ex 000"
               style={{ backgroundColor: theme.colors.background, flex: 2 }}
             />
           </View>
-          <TextInput
+          <ControlledInput
+            name="pin"
+            control={control}
             label={"Pin"}
             placeholder="0000"
-            style={{ backgroundColor: theme.colors.background }}
           />
 
           {/* <View>
             <Switch />
             <Text>Save payment information</Text>
           </View> */}
-
-          <Checkbox.Item
-            label="Save payment Information"
-            status="checked"
-            // position="leading"
+          <Controller
+            name="saveInfo"
+            control={control}
+            render={({ field: { value, onChange } }) => (
+              <Checkbox.Item
+                onPress={() => onChange(!value)}
+                label="Save payment Information"
+                status={value ? "checked" : "unchecked"}
+                // position="leading"
+              />
+            )}
           />
         </Card.Content>
       </Card>
 
       <Button
-        onPress={handleSubmit}
+        onPress={handleSubmit(handleSave)}
         mode="contained"
         uppercase
         contentStyle={{ paddingVertical: 10 }}

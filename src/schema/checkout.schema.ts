@@ -17,3 +17,15 @@ export const DeliveryInfoSchema = z.object({
 })
 
 export type DeliveryInfo = z.infer<typeof DeliveryInfoSchema>
+
+
+export const PaymentInfoSchema = z.object({
+      number: z.string(),
+      card_name: z.string(),
+      expirationDate: z.string(),
+      pin: z.string(),
+      security_code: z.string(),
+      saveInfo: z.boolean()
+})
+
+export type PaymentInfo = z.infer<typeof PaymentInfoSchema>
