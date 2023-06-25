@@ -5,6 +5,12 @@
       "bundler": "metro"
     },
     "name": "googleFormsUi",
-    "slug": "googleFormsUi"
+    "slug": "googleFormsUi",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "backgroundColor": "#673AB8"
+    }
   }
 }
