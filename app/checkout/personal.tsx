@@ -10,6 +10,7 @@ import {
 } from "../../src/schema/checkout.schema";
 
 import ControlledInput from "./../../src/components/ControlledInput";
+import { useCheckoutContext } from "../../src/context/CheckoutContext";
 
 const PersonalDetails = () => {
   const router = useRouter();
@@ -17,16 +18,16 @@ const PersonalDetails = () => {
   const {
     handleSubmit,
     control,
-    formState: { errors },
+    // formState: { errors },
   } = useForm<PersonalInfo>({
     resolver: zodResolver(PersonalInfoSchema),
   });
   // console.warn(errors);
+  const { setPersonal } = useCheckoutContext();
 
   const nextPage = (data: PersonalInfo) => {
-    console.warn(data);
+    setPersonal(data);
     router.push("/checkout/delivery");
-    console.warn("next");
   };
   return (
     <ScrollView

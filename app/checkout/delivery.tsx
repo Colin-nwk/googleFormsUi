@@ -5,7 +5,6 @@ import { useRouter } from "expo-router";
 import {
   Button,
   Card,
-  TextInput,
   useTheme,
   RadioButton,
   HelperText,
@@ -22,10 +21,12 @@ import {
 DeliveryInfoSchema;
 
 import ControlledInput from "../../src/components/ControlledInput";
+import { useCheckoutContext } from "../../src/context/CheckoutContext";
 
 const DeliveryDetails = () => {
   const theme = useTheme();
   const router = useRouter();
+  const { setDelivery } = useCheckoutContext();
 
   const { control, handleSubmit } = useForm<DeliveryInfo>({
     resolver: zodResolver(DeliveryInfoSchema),
@@ -33,9 +34,9 @@ const DeliveryDetails = () => {
       shipping: "free",
     },
   });
-  const nextPage = () => {
+  const nextPage = (data: DeliveryInfo) => {
     router.push("/checkout/payment");
-    console.warn("next");
+    setDelivery(data);
   };
 
   return (
@@ -58,6 +59,7 @@ const DeliveryDetails = () => {
             control={control}
             label={"Postal Code"}
             placeholder="9000011"
+            keyboardType="numeric"
           />
           <ControlledInput
             name="address"

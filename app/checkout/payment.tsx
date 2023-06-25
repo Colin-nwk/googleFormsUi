@@ -1,4 +1,4 @@
-import { ScrollView, StyleSheet, View } from "react-native";
+import { Alert, ScrollView, StyleSheet, View } from "react-native";
 
 import React from "react";
 import { useRouter } from "expo-router";
@@ -20,19 +20,26 @@ import {
   PaymentInfoSchema,
   PaymentInfo,
 } from "../../src/schema/checkout.schema";
+import { useCheckoutContext } from "../../src/context/CheckoutContext";
 zodResolver;
 
 const PaymentDetails = () => {
   const { control, handleSubmit } = useForm<PaymentInfo>({
     resolver: zodResolver(PaymentInfoSchema),
   });
-
+  const { onSubmitAll } = useCheckoutContext();
   const theme = useTheme();
   const router = useRouter();
-  const handleSave = () => {
-    //TODO: why wont it redirect to the home page
-    router.push("/");
-    console.warn("submit");
+  const handleSave = async (data: PaymentInfo) => {
+    const success = await onSubmitAll(data);
+
+    if (success) {
+      router.push("/");
+    } else {
+      Alert.alert("Failed to submit the form");
+    }
+    // router.push("/");
+    // onSubmitAll(data);
   };
 
   return (
@@ -49,10 +56,11 @@ const PaymentDetails = () => {
         <Card.Title title={"Payment Details"} titleVariant="titleLarge" />
         <Card.Content style={{ gap: 10 }}>
           <ControlledInput
-            name="number"
+            name="card_number"
             control={control}
             label={"Card number"}
             placeholder="0000 0000 0000 0000"
+            keyboardType="numeric"
           />
           <ControlledInput
             name="card_name"
@@ -73,6 +81,7 @@ const PaymentDetails = () => {
               control={control}
               label={"Security Code"}
               placeholder="ex 000"
+              keyboardType="numeric"
               style={{ backgroundColor: theme.colors.background, flex: 2 }}
             />
           </View>
@@ -81,6 +90,8 @@ const PaymentDetails = () => {
             control={control}
             label={"Pin"}
             placeholder="0000"
+            keyboardType="numeric"
+            secureTextEntry
           />
 
           {/* <View>

@@ -41,7 +41,6 @@ const ControlledInput = ({
             onChangeText={onChange}
             onBlur={onBlur}
             {...textInputProps}
-            autoFocus
             style={{ backgroundColor: theme.colors.background }}
             error={invalid}
           />
